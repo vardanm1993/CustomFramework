@@ -1,10 +1,13 @@
 <?php
 
-namespace App\core;
+namespace Core;
 
 class Request
 {
-    public function getPath()
+    /**
+     * @return string
+     */
+    public function getPath(): string
     {
 
         $path = $_SERVER['REQUEST_URI'] ?? '/';
@@ -18,8 +21,43 @@ class Request
 
     }
 
-    public function getMethod()
+    /**
+     * @return string
+     */
+    public function method(): string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
+    }
+
+    public function isGet()
+    {
+        return $this->method() === 'get';
+    }
+
+    public function isPost()
+    {
+        return $this->method() === 'post';
+    }
+
+    /**
+     * @return array
+     */
+    public function getBody(): array
+    {
+        $body = [];
+
+        if ($this->method() === 'get') {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        if ($this->method() === 'get') {
+            foreach ($_POST as $key => $value) {
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        return $body;
     }
 }

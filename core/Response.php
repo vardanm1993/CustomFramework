@@ -1,10 +1,14 @@
 <?php
 
-namespace App\core;
+namespace Core;
 
 class Response
 {
-    public function setStatusCode(int $code)
+    /**
+     * @param int $code
+     * @return void
+     */
+    public function setStatusCode(int $code): void
     {
         http_response_code($code);
 

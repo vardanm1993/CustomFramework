@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core;
+namespace Core;
 
 class Application
 {
@@ -9,19 +9,29 @@ class Application
     public Request $request;
     public Response $response;
     public static Application $app;
+    public Controller $controller;
 
 
+    /**
+     * @param string $rootPath
+     */
     public function __construct(string $rootPath)
     {
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
         $this->response = new Response();
+        $this->controller = new Controller();
+
         $this->router = new Router($this->request, $this->response);
     }
 
-    public function run()
+    /**
+     * @return void
+     */
+    public function run(): void
     {
         echo $this->router->resolve();
     }
+
 }
