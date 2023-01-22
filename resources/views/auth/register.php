@@ -11,12 +11,16 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmailReg" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmailReg" aria-describedby="emailHelp" name="reg">
+            <input type="email" class="form-control" id="exampleInputEmailReg" aria-describedby="emailHelp" name="email">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword2" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" name="confirmPassword">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheckReg">

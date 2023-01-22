@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Core\Controller;
 use Core\Request;
 
@@ -29,10 +30,30 @@ class AuthController extends Controller
      */
     public function register(Request $request): false|array|string
     {
+
         $this->setLayout('auth');
 
+        $user = new User();
+
         if ($request->isPost()) {
-            return "handling";
+
+
+            $user->loadData($request->getBody());
+
+
+            if ($user->validate() && $user->register()){
+
+                return 'Success';
+            }
+
+            echo "<pre>";
+            var_dump($user->errors);
+            echo "</pre>";
+            exit;
+            return $this->render('auth/register' , [
+               'model' => $user
+            ]);
+
         }
 
         return $this->render('auth/register');

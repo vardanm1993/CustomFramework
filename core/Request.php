@@ -29,12 +29,18 @@ class Request
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function isGet()
+    /**
+     * @return bool
+     */
+    public function isGet(): bool
     {
         return $this->method() === 'get';
     }
 
-    public function isPost()
+    /**
+     * @return bool
+     */
+    public function isPost(): bool
     {
         return $this->method() === 'post';
     }
@@ -52,7 +58,7 @@ class Request
             }
         }
 
-        if ($this->method() === 'get') {
+        if ($this->method() === 'post') {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
