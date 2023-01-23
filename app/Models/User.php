@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Core\Model;
+use Core\Validator;
 
 class User extends Model
 {
@@ -22,11 +23,11 @@ class User extends Model
     public function rules(): array
     {
         return [
-            'firstname' => [self::RULE_REQUIRED,[self::RULE_MIN, 'min' => 8]],
-            'lastname' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8],[self::RULE_MAX, 'max' => 24]],
-            'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
+            'firstname' => [Validator::RULE_REQUIRED,[Validator::RULE_MIN, 'min' => 8]],
+            'lastname' => [Validator::RULE_REQUIRED],
+            'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
+            'password' => [Validator::RULE_REQUIRED, [Validator::RULE_MIN, 'min' => 8],[Validator::RULE_MAX, 'max' => 24]],
+            'confirmPassword' => [Validator::RULE_REQUIRED, [Validator::RULE_MATCH, 'match' => 'password']]
         ];
     }
 }

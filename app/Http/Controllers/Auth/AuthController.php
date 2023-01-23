@@ -41,13 +41,13 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
 
 
-            if ($user->validate() && $user->register()){
+            if ($this->validateRules($user) && $user->register()){
 
                 return 'Success';
             }
 
             echo "<pre>";
-            var_dump($user->errors);
+            var_dump($this->getValidatedRulesErrors());
             echo "</pre>";
             exit;
             return $this->render('auth/register' , [

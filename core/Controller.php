@@ -23,6 +23,18 @@ class Controller
      */
     public function render($view, array $params = []): false|array|string
     {
-        return Application::$app->router->renderView($view,$params);
+        return Application::$app->view->renderView($view, $params);
+    }
+
+    public function validateRules($model): bool
+    {
+        return Application::$app->validator->validate($model);
+
+    }
+
+    public function getValidatedRulesErrors(): array
+    {
+        return Application::$app->validator->errors;
+
     }
 }
